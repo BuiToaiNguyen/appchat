@@ -2,11 +2,15 @@ import React, { Component,useEffect,useState } from 'react'
 
 import { AuthContext } from './AuthProvider';
 import useFireStore from '../hook/useFireStore';
+import {useFireStore2} from '../hook/useFireStore';
+import { uuid } from '../utils/uuid';
 export  const AppContext = React.createContext();
 
 export default function AppProvider(  { children}) {
+
     const [idroomselect, setidroomselect] = useState("");
     const [addroomInvisible, setaddroomInvisible] = useState(false)
+    const [alertMess, setAlertMess] = useState(false)
     const [invite, setinvite] = useState(false)
     const {users :{ uid}} = React.useContext(AuthContext);
     const roomsCondition = React.useMemo(()=>{
@@ -16,8 +20,21 @@ export default function AppProvider(  { children}) {
             comparValue:uid
         }
     },[uid])
+    const ueser = React.useMemo(()=>{
+        return{
+            fielName: '',
+            operator: "",
+            comparValue:" "
+        }
+    },[uid])
    
     const rooms =useFireStore('rooms',roomsCondition);
+
+        const countUser= useFireStore2('users',ueser);
+
+    
+   
+
 
     
 
@@ -42,7 +59,7 @@ export default function AppProvider(  { children}) {
     const members=useFireStore('users',usersCondition)
 
     return (
-        <AppContext.Provider value={{invite,setinvite,members,rooms ,addroomInvisible,setaddroomInvisible,idroomselect,setidroomselect,selectedRoom}}>{children}</AppContext.Provider>
+        <AppContext.Provider value={{alertMess,setAlertMess,invite,setinvite,members,rooms ,addroomInvisible,setaddroomInvisible,idroomselect,setidroomselect,selectedRoom,countUser}}>{children}</AppContext.Provider>
     )
 
 }

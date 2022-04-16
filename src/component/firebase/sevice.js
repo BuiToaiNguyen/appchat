@@ -1,4 +1,5 @@
 import firebase, { db } from "./config"
+import { doc, updateDoc,deleteDoc    } from 'firebase/firestore';
 
 export const addDocument =(collection,data)=>{
     const query =db.collection(collection);
@@ -6,6 +7,11 @@ export const addDocument =(collection,data)=>{
         ...data,
         createAt:firebase.firestore.FieldValue.serverTimestamp()
     })
+
+}
+export const deleteDocument =()=>{
+   deleteDoc(doc(db, "rooms", "7HFrtPUEKaKF9Vr7hbD3"));
+
 }
 
 // tao keywords cho displayName, su dung cho search

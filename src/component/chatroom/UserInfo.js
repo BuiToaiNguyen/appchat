@@ -1,10 +1,9 @@
-import { Avatar, Button, Space, Typography } from 'antd'
+import { Avatar, Button, Space, Typography,Popconfirm } from 'antd'
 import { Content } from 'antd/lib/layout/layout';
 import {auth, db} from '../firebase/config';
 
 import React from 'react'
 import styled from 'styled-components'
-import { useEffect } from 'react/cjs/react.development';
 import { AuthContext } from '../../Context/AuthProvider';
 const WrapperStyled = styled.div`
     display:flex;
@@ -21,6 +20,8 @@ const WrapperStyled = styled.div`
 export default function UserInfo() {
  
     const {users:{displayName,photo}} =React.useContext(AuthContext);
+    const [isConfirm,setIsConfirm]= React.useState(false)
+ 
     return (
         <WrapperStyled>
             <div>
@@ -28,7 +29,9 @@ export default function UserInfo() {
             <Typography.Text className="userName">{displayName}</Typography.Text>
             </div>
             <div>
-                <Button ghost onClick={()=> auth.signOut()} >Đăng Xuất </Button>
+              <Popconfirm placement="bottom" title={"bạn có muốn out"} onConfirm={()=>auth.signOut()} okText="Yes" cancelText="No">
+                <Button ghost onClick={()=>setIsConfirm(true)}   >Đăng Xuất </Button>
+            </Popconfirm>
 
             </div>
         </WrapperStyled>

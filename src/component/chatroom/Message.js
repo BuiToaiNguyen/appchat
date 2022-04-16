@@ -65,7 +65,7 @@ const formatDate = (second)=>{
 export default function Message({text,displayName,createAt,photoURL,id}) {
     const {users:{uid}} = useContext(AuthContext);
     useEffect(()=>{
-        console.log(uid)
+        // console.log(uid)
     },[uid])
     return (
 

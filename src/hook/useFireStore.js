@@ -40,4 +40,39 @@ import { db } from '../component/firebase/config'
     },[collection,condition]) ;
      return document;
 };
+ export const  useFireStore2 =( collection ,condition)=> {
+  const [document,setDocument] =  useState([])
+      React.useEffect(()=>{
+       let collectionRef =db.collection(collection).orderBy('createAt');
+      
+       const unscribe=  collectionRef.onSnapshot((snapshot) =>{
+         const document = snapshot.docs.map((doc)=>{
+      
+          
+          return {
+             
+                ...doc.data(),
+                id:doc.id
+               
+            }
+          
+          
+          
+
+           
+         }
+         )
+         setDocument(document);
+        
+       }
+       
+       )
+       
+      return unscribe
+    },[ ]) ;
+     return document;
+};
+
+
+
 export default useFireStore;

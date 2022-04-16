@@ -5,7 +5,7 @@ import UserInfo from './UserInfo'
 import styled from 'styled-components';
 import {auth} from '../firebase/config';
 const StyleSideBar = styled.div`
-    background:	#3399FF;
+    background:#111;
     color:white;
     height:100vh;
 

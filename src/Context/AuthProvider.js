@@ -44,9 +44,10 @@ export default function AuthProvider(  { children}) {
         }
 
     },[history])
+    
    
     return (
-        <AuthContext.Provider value={{users}}>
+        <AuthContext.Provider value={{setLoading,setUser,users}}>
 
         { loading ?  <Spin/> : children}
 

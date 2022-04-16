@@ -7,12 +7,12 @@ import AppProvider from './Context/AppProvider';
 
 import InviteModal from './Modals/InviteModal';
 import AddRoomModal from './Modals/AddRoomModal';
+import Alert from './component/chatroom/Alert';
 export default function  App() {
   return (
   <BrowserRouter>
   <AuthProvider>
     <AppProvider>
-    
   <Switch>
 
     <Route component={Login} path="/login"/>
